@@ -9,9 +9,6 @@ export HISTSIZE=
 export HISTFILESIZE=
 export PROMPT_COMMAND='history -a'
 
-VISUAL='emacsclient'
-EDITOR='emacsclient'
-
 TERM=xterm
 
 alias jf="$HOME/jingle/Jingle/tools/run/jfind"
@@ -40,6 +37,7 @@ else
 fi
     
 alias k91='kill -9 %1'
+alias emacs='emacs26'
 
 export ORACLE_HOME=$HOME/opt/instantclient_12_1
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ORACLE_HOME
@@ -48,3 +46,4 @@ export PYTHONIOENCODING='utf-8'
 [ -e .bashrc.local ] && source .bashrc.local
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+

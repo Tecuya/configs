@@ -1,4 +1,51 @@
-;;; package --- Summary
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
+(use-package yaml-mode)
+(use-package flycheck)
+(use-package dockerfile-mode)
+(use-package company)
+(use-package js2-mode)
+(use-package markdown-mode)
+(use-package helm)
+(use-package use-package)
+(use-package stylus-mode)
+(use-package rainbow-delimiters)
+(use-package projectile)
+(use-package less-css-mode)
+(use-package kill-ring-search)
+(use-package key-chord)
+(use-package json-reformat)
+(use-package jade-mode)
+(use-package highlight)
+(use-package flycheck)
+(use-package f)
+(use-package ensime)
+(use-package dsvn)
+(use-package color-theme)
+(use-package coffee-mode)
+(use-package browse-kill-ring)
+(use-package auto-complete)
+
+; (use-package nvm)
+; (use-package dired+)
+; (use-package zoom-frm)
+; (use-package protobuf-mode)
+
 
 ;;; Commentary:
 
@@ -18,12 +65,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; ELPA stuff
-(require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
 
 (require 'flycheck)
 
@@ -35,7 +76,7 @@
 (require 'zoom-frm)
 
 ;; setup nvm.el
-(nvm-use "v7.9.0")
+;(nvm-use "v7.9.0")
 
 (require 'company)
 
@@ -94,7 +135,7 @@
 (require 'rainbow-delimiters)
 
 ;; package-initialize doesnt do the job for this one
-(require 'dired+)
+; (require 'dired+)
 
 (add-to-list 'load-path "~/.emacs.d/loadpath")
 
@@ -353,10 +394,10 @@
 (setq-default c-label-offset 0)
 
 ;; load google go mode
-(require 'go-mode-load)
+; (require 'go-mode-load)
 
 ;; grep buffers
-(require 'grep-buffers)
+; (require 'grep-buffers)
 ;; ctrl-shift-s is grep-buffers
 (global-set-key (quote [33554451]) (quote grep-buffers))
 
@@ -391,11 +432,11 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
-(require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
+; (require 'ac-emacs-eclim-source)
+;(ac-emacs-eclim-config)
 
 ;; highlighter!
-(require 'markerpen)
+; (require 'markerpen)
 ;; (global-set-key (kbd "C-c m") 'markerpen-mark-region)
 
 (defun unix-file ()
@@ -564,7 +605,7 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (yaml-mode dockerfile-mode nvm tide company js2-mode markdown-mode helm zoom-frm use-package stylus-mode rainbow-delimiters protobuf-mode projectile magit-svn less-css-mode kill-ring-search key-chord json-reformat jade-mode highlight flycheck f ensime emacs-eclim dsvn dired+ color-theme coffee-mode browse-kill-ring auto-complete)))
+    (auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
  '(projectile-global-mode t)
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
