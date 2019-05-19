@@ -1,3 +1,4 @@
+;; melpa config
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -5,21 +6,25 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
+;; use-package boilerplate
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
 (eval-when-compile
   (require 'use-package))
 
-(require 'use-package-ensure)
+; use-package-ensure
+; (use-package use-package-ensure)
 (setq use-package-always-ensure t)
 
+;; the packages themselves
 (use-package yaml-mode)
 (use-package flycheck)
 (use-package dockerfile-mode)
 (use-package company)
-(use-package js2-mode)
+(use-package js2-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 (use-package markdown-mode)
 (use-package helm)
 (use-package use-package)
@@ -28,7 +33,9 @@
 (use-package projectile)
 (use-package less-css-mode)
 (use-package kill-ring-search)
-(use-package key-chord)
+(use-package key-chord
+  :init
+  (key-chord-mode 1))
 (use-package json-reformat)
 (use-package jade-mode)
 (use-package highlight)
@@ -40,18 +47,17 @@
 (use-package coffee-mode)
 (use-package browse-kill-ring)
 (use-package auto-complete)
+(use-package elpy
+  :init
+  (elpy-enable))
+(use-package magit)
 
-; (use-package nvm)
-; (use-package dired+)
-; (use-package zoom-frm)
-; (use-package protobuf-mode)
+;; loadpath things
+(add-to-list 'load-path "~/.emacs.d/loadpath")
+(require 'zoom-frm)
+(require 'markerpen)
 
-
-;;; Commentary:
-
-;;; Code:
-
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; osx - command is meta too
 (setq mac-command-modifier 'meta)
@@ -60,59 +66,44 @@
 ; so we can use emacsclient
 (server-start)
 
-; load magit extensions based on git config - might be good to put in global config
 (add-hook 'magit-mode-hook 'magit-load-config-extensions)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; ELPA stuff
-
-(require 'flycheck)
 
 (autoload 'kill-ring-search "kill-ring-search"
   "Search the kill ring in the minibuffer."
   (interactive))
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
-(require 'zoom-frm)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; old apple related stufff
 
 ;; setup nvm.el
-;(nvm-use "v7.9.0")
+(nvm-use "v10.15.3")
 
-(require 'company)
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; tide recommended setup
+;; ;; aligns annotation to the right hand side
+;; (setq company-tooltip-align-annotations t)
 
-;; (defun setup-tide-mode ()
-;;   (interactive)
-;;   (tide-setup)
-;;   (flycheck-mode +1)
-;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-;;   (eldoc-mode +1)
-;;   (tide-hl-identifier-mode +1)
-;;   ;; company is an optional dependency. You have to
-;;   ;; install it separately via package-install
-;;   ;; `M-x package-install [ret] company`
-;;   (company-mode +1))
-
-;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
-
-;; formats the buffer before saving
-(add-hook 'before-save-hook 'tide-format-before-save)
+;; ;; formats the buffer before saving
+;; (add-hook 'before-save-hook 'tide-format-before-save)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
-
 (add-hook 'js2-mode-hook #'setup-tide-mode)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; http://stackoverflow.com/questions/8918910/weird-character-zsh-in-emacs-terminal
-(setq system-uses-terminfo nil)
-
-; company mode also comes from melpa
-(require 'company)
-(global-company-mode t)
+; (setq system-uses-terminfo nil)
 
 ; http://superuser.com/questions/125569/how-to-fix-emacs-popup-dialogs-on-mac-os-x
 (defadvice yes-or-no-p (around prevent-dialog activate)
@@ -124,20 +115,25 @@
   (let ((use-dialog-box nil))
     ad-do-it))
 
-;;;;;;;;;;;;;;;;
-
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-(key-chord-mode 1)
 
-(require 'projectile)
+;;;;;;;
+;; "i cant believe i actually need these lets disable them and find out"
+;; (require 'company)
+;; (require 'flycheck)
 
-(require 'rainbow-delimiters)
+; company mode also comes from melpa
+;; (require 'company)
+;; (global-company-mode t)
+
+; (require 'projectile)
+; (require 'rainbow-delimiters)
 
 ;; package-initialize doesnt do the job for this one
 ; (require 'dired+)
 
-(add-to-list 'load-path "~/.emacs.d/loadpath")
 
 ;; Draw tabs with the same color as trailing whitespace
 (add-hook 'font-lock-mode-hook
@@ -184,6 +180,8 @@
 
 ; no scroll bars.
 (set-scroll-bar-mode nil)
+
+(require 'grep-buffers)
 
 ; track recent files
 (require 'recentf)
@@ -393,11 +391,6 @@
 (setq-default tab-width 4)
 (setq-default c-label-offset 0)
 
-;; load google go mode
-; (require 'go-mode-load)
-
-;; grep buffers
-; (require 'grep-buffers)
 ;; ctrl-shift-s is grep-buffers
 (global-set-key (quote [33554451]) (quote grep-buffers))
 
@@ -406,11 +399,6 @@
 
 (global-set-key (kbd "M-S-<down>") 'next-error)
 (global-set-key (kbd "M-S-<up>") 'previous-error)
-
-; (define-key global-map "\C-cl" 'org-store-link)
-; (setq org-log-done t)
-; (setq org-default-notes-file (concat org-directory "/my.org"))
-(define-key global-map "\C-cc" 'org-capture)
 
 ; log timestamps when changing states.. define some custom states
 ; keep the first one TODO because C-M-RET creates new task with first item
@@ -432,12 +420,9 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
-; (require 'ac-emacs-eclim-source)
-;(ac-emacs-eclim-config)
 
 ;; highlighter!
-; (require 'markerpen)
-;; (global-set-key (kbd "C-c m") 'markerpen-mark-region)
+;  (global-set-key (kbd "C-c m") 'markerpen-mark-region)
 
 (defun unix-file ()
   "Change the current buffer to Latin 1 with Unix line-ends."
@@ -605,8 +590,12 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+    (nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
  '(projectile-global-mode t)
+ '(projectile-globally-ignored-directories
+   (quote
+    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules")))
+ '(projectile-globally-ignored-files (quote ("*.map" "TAGS")))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
    (quote
@@ -614,6 +603,7 @@
  '(projectile-use-native-indexing nil)
  '(py-electric-comment-p nil)
  '(py-shell-name "/usr/bin/ipython")
+ '(python-shell-interpreter "python3")
  '(recentf-auto-cleanup (quote mode))
  '(same-window-buffer-names (quote ("*shell*")))
  '(tool-bar-mode nil)
