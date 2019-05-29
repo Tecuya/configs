@@ -25,6 +25,7 @@
 (use-package js2-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+(use-package rjsx-mode)
 (use-package markdown-mode)
 (use-package helm)
 (use-package use-package)
@@ -590,7 +591,7 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+    (rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
