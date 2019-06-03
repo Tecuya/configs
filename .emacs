@@ -146,6 +146,10 @@
 ; draw tabs visibly
 (standard-display-ascii ?\t "-   ")
 
+; windmove
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 ;; node.js shell
 (setq inferior-js-program-command "node")
 (setq inferior-js-mode-hook
@@ -277,8 +281,8 @@
 (define-key my-map (kbd ",") 'turn-volume-down)
 
 ;; ; set default browser
-;; (setq browse-url-generic-program "open"
-;;       browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "open"
+      browse-url-browser-function 'browse-url-generic)
 
 ; "locate" buffer (since i disable window title i need a convenient way to get the dir)
 ; (overrides default count-lines-page)
