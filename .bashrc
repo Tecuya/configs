@@ -11,22 +11,6 @@ export PROMPT_COMMAND='history -a'
 
 TERM=xterm
 
-alias jf="$HOME/jingle/Jingle/tools/run/jfind"
-jfg () {
-    OLDPWD=$(pwd)
-    cd ~/jingle/Jingle
-    export PATTERN="$1"
-    shift
-    FILES=$( tools/run/jfind $PATTERN )
-    if [ -z "$FILES" ]
-    then
-        echo 'No match.'
-        return
-    fi
-    grep -Hni $* $PATTERN $( echo $FILES )
-    cd "$OLDPWD"
-}
-
 if [ `uname` == "Linux" ]
 then
     alias ls='LC_COLLATE=C ls --color=yes -F'
@@ -35,7 +19,7 @@ else
     alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n'
     alias eq='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -tty -q'
 fi
-    
+
 alias k91='kill -9 %1'
 alias emacs='emacs26'
 
@@ -46,4 +30,3 @@ export PYTHONIOENCODING='utf-8'
 [ -e .bashrc.local ] && source .bashrc.local
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-
