@@ -27,6 +27,9 @@ export ORACLE_HOME=$HOME/opt/instantclient_12_1
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ORACLE_HOME
 export PYTHONIOENCODING='utf-8'
 
+alias ip='ipython --simple-prompt'
+
 [ -e .bashrc.local ] && source .bashrc.local
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

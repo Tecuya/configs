@@ -34,6 +34,7 @@
 (use-package projectile)
 (use-package less-css-mode)
 (use-package kill-ring-search)
+(use-package nvm)
 (use-package key-chord
   :init
   (key-chord-mode 1))
@@ -44,7 +45,6 @@
 (use-package f)
 (use-package ensime)
 (use-package dsvn)
-(use-package color-theme)
 (use-package coffee-mode)
 (use-package browse-kill-ring)
 (use-package auto-complete)
@@ -52,6 +52,7 @@
   :init
   (elpy-enable))
 (use-package magit)
+(use-package thrift)
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
@@ -75,10 +76,12 @@
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; old apple related stufff
+
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
 
 ;; setup nvm.el
-(nvm-use "v10.15.3")
+;l (nvm-use "v10.15.3")
 
 (defun setup-tide-mode ()
   (interactive)
@@ -565,6 +568,7 @@
     (egg-status-buffer-mode egg-log-buffer-mode egg-file-log-buffer-mode egg-reflog-buffer-mode egg-diff-buffer-mode egg-commit-buffer-mode)))
  '(egg-mode-key-prefix "C-c e")
  '(egg-show-key-help-in-buffers (quote (:status :log :file-log :reflog :diff :commit)))
+ '(elpy-rpc-python-command "python3")
  '(erc-join-buffer (quote bury))
  '(erc-max-buffer-size 50000)
  '(erc-track-minor-mode nil)
@@ -595,7 +599,7 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+    (thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
