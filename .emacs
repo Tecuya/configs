@@ -584,6 +584,8 @@
    (quote
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin" "/home/sean/bin")))
  '(flycheck-flake8-maximum-line-length 120)
+ '(flycheck-python-flake8-executable "python3")
+ '(flycheck-python-pylint-executable "python3")
  '(git-commit-summary-max-length 190)
  '(global-flycheck-mode t nil (flycheck))
  '(indicate-empty-lines t)
