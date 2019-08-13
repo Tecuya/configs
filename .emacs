@@ -51,13 +51,22 @@
 (use-package elpy
   :init
   (elpy-enable))
+(use-package jedi
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup))
 (use-package magit)
 (use-package thrift)
+(use-package exec-path-from-shell
+  :init
+  (exec-path-from-shell-initialize))
+
+
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
 (require 'zoom-frm)
 (require 'markerpen)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -76,9 +85,6 @@
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "-i --simple-prompt")
 
 ;; setup nvm.el
 ;l (nvm-use "v10.15.3")
@@ -586,6 +592,7 @@
    (quote
     (("1.8" . "/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home")
      ("1.7" . "/Library/Java/JavaVirtualMachines/jdk1.7.0_65.jdk/Contents/Home"))))
+ '(jedi:complete-on-dot t)
  '(menu-bar-mode nil)
  '(mingus-mode-always-modeline t)
  '(mingus-mpd-host "lockwood")
@@ -599,7 +606,7 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+    (jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn ensime f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
@@ -612,6 +619,7 @@
  '(projectile-use-native-indexing nil)
  '(py-electric-comment-p nil)
  '(py-shell-name "/usr/bin/ipython")
+ '(python-check-command "flake8")
  '(python-shell-interpreter "python3")
  '(recentf-auto-cleanup (quote mode))
  '(same-window-buffer-names (quote ("*shell*")))
