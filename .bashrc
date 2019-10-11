@@ -16,8 +16,7 @@ then
     alias ls='LC_COLLATE=C ls --color=yes -F'
 else
     alias ls='ls -FG'
-    alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n'
-    alias eq='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -tty -q'
+    alias ec='/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_14/emacsclient -c -nw'
 fi
 
 alias k91='kill -9 %1'
@@ -27,6 +26,9 @@ export ORACLE_HOME=$HOME/opt/instantclient_12_1
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ORACLE_HOME
 export PYTHONIOENCODING='utf-8'
 
+alias ip='ipython --simple-prompt'
+
 [ -e .bashrc.local ] && source .bashrc.local
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
