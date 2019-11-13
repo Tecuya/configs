@@ -159,6 +159,12 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+; these conflict with windmove and are annoying
+(define-key org-mode-map (kbd "<S-left>") nil)
+(define-key org-mode-map (kbd "<S-right>") nil)
+(define-key org-mode-map (kbd "<S-up>") nil)
+(define-key org-mode-map (kbd "<S-down>") nil)
+
 ;; node.js shell
 (setq inferior-js-program-command "node")
 (setq inferior-js-mode-hook
