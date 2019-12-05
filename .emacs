@@ -644,7 +644,7 @@
  '(projectile-globally-ignored-directories
    (quote
     (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules")))
- '(projectile-globally-ignored-files (quote ("*.map" "TAGS")))
+ '(projectile-globally-ignored-files (quote ("*.map" "TAGS" "*vendor.js" "./build/*")))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
    (quote
