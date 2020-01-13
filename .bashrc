@@ -20,7 +20,6 @@ else
 fi
 
 alias k91='kill -9 %1'
-alias emacs='emacs26'
 
 export ORACLE_HOME=$HOME/opt/instantclient_12_1
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ORACLE_HOME
