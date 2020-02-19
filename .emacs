@@ -282,12 +282,9 @@
 ; my prefix
 (global-set-key (kbd "C-c m") 'my-map)
 
-; mingus (n)ext
-(define-key my-map (kbd "b") 'mingus-prev)
-(define-key my-map (kbd "n") 'mingus-next)
-
-; mingus (p)ause
-(define-key my-map (kbd "p") 'mingus-pause)
+(define-key my-map (kbd "b") (lambda () (interactive) (shell-command "gmpc-remote -z")))
+(define-key my-map (kbd "n") (lambda () (interactive) (shell-command "gmpc-remote -b")))
+(define-key my-map (kbd "p") (lambda () (interactive) (shell-command "gmpc-remote -v")))
 
 (define-key my-map (kbd "h") 'helm-mini)
 (define-key my-map (kbd "r") 'remove-newlines-in-region)
@@ -550,7 +547,7 @@
   (switch-to-buffer nil))               ; return to the initial buffer
 
 ;;; register population .. poor man's snippet library
-(set-register ?i "import IPython; IPython.embed()")
+(set-register ?i "import IPython; IPython.embed(simple_prompt=True)")
 (set-register ?p "import pdb; pdb.set_trace()")
 (set-register ?h "Reviewed by: TBD Approved by: Daniel")
 (set-register ?w "<script src='http://10.200.200.6:8881/target/target-script-min.js#anonymous'></script>")
