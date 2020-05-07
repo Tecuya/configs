@@ -7,7 +7,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 export HISTSIZE=
 export HISTFILESIZE=
-export PROMPT_COMMAND='history -a'
+export PROMPT_COMMAND='history -a ; echo -en "\033]0;$(whoami)@$(hostname)\a"'
 
 TERM=xterm
 
