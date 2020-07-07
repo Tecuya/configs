@@ -305,26 +305,6 @@
 (define-key my-map (kbd "g") 'projectile-grep)
 (define-key my-map (kbd "f") 'projectile-find-file)
 
-; volume control
-(defun turn-volume-up ()
-  (interactive)
-  (mingus-vol-up)
-  (mingus-vol-up)
-  (mingus-vol-up)
-  (mingus-vol-up)
-  (mingus-vol-up))
-
-(defun turn-volume-down ()
-  (interactive)
-  (mingus-vol-down)
-  (mingus-vol-down)
-  (mingus-vol-down)
-  (mingus-vol-down)
-  (mingus-vol-down))
-
-(define-key my-map (kbd ".") 'turn-volume-up)
-(define-key my-map (kbd ",") 'turn-volume-down)
-
 ;; ; set default browser
 (setq browse-url-generic-program "open"
       browse-url-browser-function 'browse-url-generic)
