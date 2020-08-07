@@ -43,8 +43,6 @@
 (use-package highlight)
 (use-package flycheck)
 (use-package f)
-(use-package ensime)
-(use-package dsvn)
 (use-package coffee-mode)
 (use-package browse-kill-ring)
 (use-package auto-complete)
@@ -619,7 +617,7 @@
  '(exec-path
    (quote
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin" "/home/sean/bin")))
- '(flycheck-flake8-maximum-line-length 120)
+ '(flycheck-flake8-maximum-line-length 100)
  '(flycheck-python-flake8-executable "python3")
  '(flycheck-python-pylint-executable "python3")
  '(git-commit-summary-max-length 190)
