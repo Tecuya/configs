@@ -60,7 +60,7 @@
 
 (use-package typescript-mode)
 (use-package web-mode
-  :mode (("\\.tsx$" . web-mode))
+  :mode (("\\.[jt]sx$" . web-mode))
   :init
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
@@ -288,9 +288,9 @@
 ; my prefix
 (global-set-key (kbd "C-c m") 'my-map)
 
-(define-key my-map (kbd "b") (lambda () (interactive) (shell-command "gmpc-remote -z")))
-(define-key my-map (kbd "n") (lambda () (interactive) (shell-command "gmpc-remote -b")))
-(define-key my-map (kbd "p") (lambda () (interactive) (shell-command "gmpc-remote -v")))
+(define-key my-map (kbd "b") (lambda () (interactive) (shell-command "mpc prev")))
+(define-key my-map (kbd "n") (lambda () (interactive) (shell-command "mpc next")))
+(define-key my-map (kbd "p") (lambda () (interactive) (shell-command "mpc toggle")))
 
 (define-key my-map (kbd "h") 'helm-mini)
 (define-key my-map (kbd "r") 'remove-newlines-in-region)
@@ -302,26 +302,6 @@
 
 (define-key my-map (kbd "g") 'projectile-grep)
 (define-key my-map (kbd "f") 'projectile-find-file)
-
-; volume control
-(defun turn-volume-up ()
-  (interactive)
-  (mingus-vol-up)
-  (mingus-vol-up)
-  (mingus-vol-up)
-  (mingus-vol-up)
-  (mingus-vol-up))
-
-(defun turn-volume-down ()
-  (interactive)
-  (mingus-vol-down)
-  (mingus-vol-down)
-  (mingus-vol-down)
-  (mingus-vol-down)
-  (mingus-vol-down))
-
-(define-key my-map (kbd ".") 'turn-volume-up)
-(define-key my-map (kbd ",") 'turn-volume-down)
 
 ;; ; set default browser
 (setq browse-url-generic-program "open"
@@ -561,6 +541,8 @@
 
 (put 'upcase-region 'disabled nil)
 
+(desktop-save-mode 1)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -629,6 +611,7 @@
     (("1.8" . "/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home")
      ("1.7" . "/Library/Java/JavaVirtualMachines/jdk1.7.0_65.jdk/Contents/Home"))))
  '(jedi:complete-on-dot t)
+ '(js-indent-level 2)
  '(menu-bar-mode nil)
  '(mingus-mode-always-modeline t)
  '(mingus-mpd-host "lockwood")
@@ -642,14 +625,12 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (web-mode typescript-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+    (web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
-    (".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules")))
- '(projectile-globally-ignored-files
-   (quote
-    ("*.map" "TAGS" "*vendor.js" "./build/*" "*/.mypy_cache/*")))
+    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules")))
+ '(projectile-globally-ignored-files (quote ("*.map" "TAGS" "*vendor.js" "./build/*")))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
    (quote

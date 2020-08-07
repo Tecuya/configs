@@ -25,7 +25,6 @@ export ORACLE_HOME=$HOME/opt/instantclient_12_1
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ORACLE_HOME
 export PYTHONIOENCODING='utf-8'
 
-alias ip='ipython --simple-prompt'
 alias ec='emacsclient -c'
 
 [ -e .bashrc.local ] && source .bashrc.local
