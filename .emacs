@@ -629,8 +629,10 @@
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
-    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules")))
- '(projectile-globally-ignored-files (quote ("*.map" "TAGS" "*vendor.js" "./build/*")))
+    (".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "**/.mypy_cache")))
+ '(projectile-globally-ignored-files
+   (quote
+    (".coverage" "*.map" "TAGS" "*vendor.js" "./build/*")))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
    (quote
