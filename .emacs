@@ -43,8 +43,6 @@
 (use-package highlight)
 (use-package flycheck)
 (use-package f)
-(use-package ensime)
-(use-package dsvn)
 (use-package coffee-mode)
 (use-package browse-kill-ring)
 (use-package auto-complete)
@@ -601,7 +599,7 @@
  '(exec-path
    (quote
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin" "/home/sean/bin")))
- '(flycheck-flake8-maximum-line-length 120)
+ '(flycheck-flake8-maximum-line-length 100)
  '(flycheck-python-flake8-executable "python3")
  '(flycheck-python-pylint-executable "python3")
  '(git-commit-summary-max-length 190)
@@ -631,8 +629,10 @@
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
-    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules")))
- '(projectile-globally-ignored-files (quote ("*.map" "TAGS" "*vendor.js" "./build/*")))
+    (".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "**/.mypy_cache")))
+ '(projectile-globally-ignored-files
+   (quote
+    (".coverage" "*.map" "TAGS" "*vendor.js" "./build/*")))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
    (quote
