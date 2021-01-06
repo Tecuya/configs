@@ -544,7 +544,7 @@
 
 (put 'upcase-region 'disabled nil)
 
-(desktop-save-mode 1)
+; (desktop-save-mode 1)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
