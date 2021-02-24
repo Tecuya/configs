@@ -46,6 +46,7 @@
 (use-package coffee-mode)
 (use-package browse-kill-ring)
 (use-package auto-complete)
+(use-package bazel-mode)
 (use-package elpy
   :init
   (elpy-enable))
@@ -68,9 +69,13 @@
   (setq web-mode-attr-value-indent-offset 2)
 )
 
+(use-package go-mode)
+
+; todo remove this if not used
+(use-package git-gutter)
+
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
-(require 'zoom-frm)
 (require 'markerpen)
 
 
@@ -334,6 +339,9 @@
 ; easy shortcut to rename-buffer
 (global-set-key (kbd "C-c r") 'rename-buffer)
 
+; bazel mode
+(add-to-list 'auto-mode-alist '("\\.star\\'" . bazel-starlark-mode))
+
 ;; uniquify duplicate buffer names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse)
@@ -541,7 +549,7 @@
 
 (put 'upcase-region 'disabled nil)
 
-(desktop-save-mode 1)
+; (desktop-save-mode 1)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -625,7 +633,8 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+    (go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+ '(projectile-completion-system (quote ido))
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
