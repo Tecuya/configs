@@ -77,7 +77,7 @@
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
-(require 'markerpen)
+(require 'zoom-frm)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
