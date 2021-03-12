@@ -73,6 +73,7 @@
 
 ; todo remove this if not used
 (use-package git-gutter)
+(use-package terraform-mode)
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
@@ -633,7 +634,7 @@
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
    (quote
-    (go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
+    (terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
  '(projectile-completion-system (quote ido))
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
