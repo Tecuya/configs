@@ -2,7 +2,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
@@ -21,7 +21,6 @@
 (use-package yaml-mode)
 (use-package flycheck)
 (use-package dockerfile-mode)
-(use-package company)
 (use-package js2-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
@@ -41,9 +40,7 @@
 (use-package json-reformat)
 (use-package jade-mode)
 (use-package highlight)
-(use-package flycheck)
 (use-package f)
-(use-package coffee-mode)
 (use-package browse-kill-ring)
 (use-package auto-complete)
 (use-package bazel-mode)
@@ -71,14 +68,11 @@
 
 (use-package go-mode)
 
-; todo remove this if not used
-(use-package git-gutter)
 (use-package terraform-mode)
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
 (require 'zoom-frm)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -99,19 +93,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; setup nvm.el
-;l (nvm-use "v10.15.3")
+;; (nvm-use "v10.15.3")
 
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
+;; (defun setup-tide-mode ()
+;;   (interactive)
+;;   (tide-setup)
+;;   (flycheck-mode +1)
+;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;   (eldoc-mode +1)
+;;   (tide-hl-identifier-mode +1)
+;;   ;; company is an optional dependency. You have to
+;;   ;; install it separately via package-install
+;;   ;; `M-x package-install [ret] company`
+;;   (company-mode +1))
 
 ;; ;; aligns annotation to the right hand side
 ;; (setq company-tooltip-align-annotations t)
@@ -119,8 +113,8 @@
 ;; ;; formats the buffer before saving
 ;; (add-hook 'before-save-hook 'tide-format-before-save)
 
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
-(add-hook 'js2-mode-hook #'setup-tide-mode)
+;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
+;; (add-hook 'js2-mode-hook #'setup-tide-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -304,7 +298,7 @@
 (define-key my-map (kbd "i") 'insert-buffer)
 
 ; eclim stuff
-(define-key my-map (kbd "t") 'company-complete-common)
+; (define-key my-map (kbd "t") 'company-complete-common)
 
 (define-key my-map (kbd "g") 'projectile-grep)
 (define-key my-map (kbd "f") 'projectile-find-file)
@@ -523,8 +517,8 @@
 (global-set-key (kbd "C-x t") 'tidy-buffer)
 (global-set-key (kbd "C-x v") 'magit-status)
 (global-set-key (kbd "C-c q") 'delete-trailing-whitespace)
-(global-set-key (kbd "C-c g") 'rope-goto-definition)
-(global-set-key (kbd "C-c d") 'rope-show-doc)
+;; (global-set-key (kbd "C-c g") 'rope-goto-definition)
+;; (global-set-key (kbd "C-c d") 'rope-show-doc)
 (global-set-key [f10] 'flycheck-error)
 (global-set-key [f11] 'flycheck-previous-error)
 
@@ -578,7 +572,6 @@
  '(ac-trigger-key "TAB")
  '(ac-use-fuzzy nil)
  '(ack-executable (executable-find "ack-grep"))
- '(ack-project-root-file-patterns (quote (".ropeproject")))
  '(ack-prompt-for-directory t)
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
@@ -608,11 +601,9 @@
  '(exec-path
    (quote
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin" "/home/sean/bin")))
- '(flycheck-flake8-maximum-line-length 100)
- '(flycheck-python-flake8-executable "python3")
- '(flycheck-python-pylint-executable "python3")
+ '(flycheck-disabled-checkers (quote (python-mypy)))
  '(git-commit-summary-max-length 190)
- '(global-flycheck-mode t nil (flycheck))
+ '(global-flycheck-mode t)
  '(indicate-empty-lines t)
  '(jde-jdk (quote ("1.7")))
  '(jde-jdk-registry
@@ -648,10 +639,6 @@
    (quote
     (".projectile" ".git" ".hg" ".fslckout" ".bzr" "_darcs" "rebar.config" "project.clj" "pom.xml" "build.sbt" "build.gradle" "Gemfile" "Makefile" ".svn")))
  '(projectile-use-native-indexing nil)
- '(py-electric-comment-p nil)
- '(py-shell-name "/usr/bin/ipython")
- '(python-check-command "flake8")
- '(python-shell-interpreter "python3")
  '(recentf-auto-cleanup (quote mode))
  '(same-window-buffer-names (quote ("*shell*")))
  '(tool-bar-mode nil)
