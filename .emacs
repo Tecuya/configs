@@ -43,7 +43,7 @@
 (use-package f)
 (use-package browse-kill-ring)
 (use-package auto-complete)
-(use-package bazel-mode)
+; (use-package bazel-mode)
 (use-package elpy
   :init
   (elpy-enable))
@@ -538,9 +538,6 @@
 ;;; register population .. poor man's snippet library
 (set-register ?i "import IPython; IPython.embed(simple_prompt=True)")
 (set-register ?p "import pdb; pdb.set_trace()")
-(set-register ?h "Reviewed by: TBD Approved by: Daniel")
-(set-register ?w "<script src='http://10.200.200.6:8881/target/target-script-min.js#anonymous'></script>")
-(set-register ?l "9HqfSvFjT4")
 
 (put 'upcase-region 'disabled nil)
 
@@ -568,7 +565,7 @@
  '(ac-delay 0.3)
  '(ac-expand-on-auto-complete t)
  '(ac-show-menu-immediately-on-auto-complete nil)
- '(ac-trigger-commands (quote (self-insert-command)))
+ '(ac-trigger-commands '(self-insert-command))
  '(ac-trigger-key "TAB")
  '(ac-use-fuzzy nil)
  '(ack-executable (executable-find "ack-grep"))
@@ -576,40 +573,36 @@
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(backup-by-copying t)
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/tmp/"))))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/tmp/")))
  '(coffee-tab-width 4)
  '(comint-prompt-read-only nil)
  '(compilation-scroll-output t)
  '(css-indent-offset 2)
  '(custom-enabled-themes nil)
  '(custom-safe-themes
-   (quote
-    ("43032e2a6d0249ad2d7aef3dabcb1236f6cba8dd7223772c5411970fd3a1ef15" "78e95ad3d8aa41b5fffa63f7501d930e101c28755eab696c73e1e2d73ff688e1" "d064986c904fdcab986f5f981f1ff0f210045ecf27f9745f7b3addb020afc6f1" default)))
+   '("43032e2a6d0249ad2d7aef3dabcb1236f6cba8dd7223772c5411970fd3a1ef15" "78e95ad3d8aa41b5fffa63f7501d930e101c28755eab696c73e1e2d73ff688e1" "d064986c904fdcab986f5f981f1ff0f210045ecf27f9745f7b3addb020afc6f1" default))
  '(dired-dwim-target t)
  '(diredp-hide-details-initially-flag nil)
  '(egg-buffer-hide-help-on-start
-   (quote
-    (egg-status-buffer-mode egg-log-buffer-mode egg-file-log-buffer-mode egg-reflog-buffer-mode egg-diff-buffer-mode egg-commit-buffer-mode)))
+   '(egg-status-buffer-mode egg-log-buffer-mode egg-file-log-buffer-mode egg-reflog-buffer-mode egg-diff-buffer-mode egg-commit-buffer-mode))
  '(egg-mode-key-prefix "C-c e")
- '(egg-show-key-help-in-buffers (quote (:status :log :file-log :reflog :diff :commit)))
+ '(egg-show-key-help-in-buffers '(:status :log :file-log :reflog :diff :commit))
  '(elpy-rpc-python-command "python3")
- '(erc-join-buffer (quote bury))
+ '(erc-join-buffer 'bury)
  '(erc-max-buffer-size 50000)
  '(erc-track-minor-mode nil)
  '(erc-track-mode nil)
  '(erc-truncate-mode t)
  '(exec-path
-   (quote
-    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin" "/home/sean/bin")))
- '(flycheck-disabled-checkers (quote (python-mypy)))
+   '("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin" "/usr/local/bin" "/home/sean/bin"))
+ '(flycheck-disabled-checkers '(python-mypy))
  '(git-commit-summary-max-length 190)
  '(global-flycheck-mode t)
  '(indicate-empty-lines t)
- '(jde-jdk (quote ("1.7")))
+ '(jde-jdk '("1.7"))
  '(jde-jdk-registry
-   (quote
-    (("1.8" . "/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home")
-     ("1.7" . "/Library/Java/JavaVirtualMachines/jdk1.7.0_65.jdk/Contents/Home"))))
+   '(("1.8" . "/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home")
+     ("1.7" . "/Library/Java/JavaVirtualMachines/jdk1.7.0_65.jdk/Contents/Home")))
  '(jedi:complete-on-dot t)
  '(js-indent-level 2)
  '(menu-bar-mode nil)
@@ -621,26 +614,21 @@
  '(org-directory "~/Desktop/org")
  '(org-log-into-drawer t)
  '(org-mobile-directory "/home/sean/Desktop/org/mobile/")
- '(org-mobile-files (quote (org-agenda-files "~/Desktop/org/")))
+ '(org-mobile-files '(org-agenda-files "~/Desktop/org/"))
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
-   (quote
-    (terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package)))
- '(projectile-completion-system (quote ido))
+   '(terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package))
+ '(projectile-completion-system 'ido)
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
-   (quote
-    (".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "**/.mypy_cache")))
- '(projectile-globally-ignored-files
-   (quote
-    (".coverage" "*.map" "TAGS" "*vendor.js" "./build/*")))
+   '(".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "**/.mypy_cache"))
+ '(projectile-globally-ignored-files '(".coverage" "*.map" "TAGS" "*vendor.js" "./build/*"))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
-   (quote
-    (".projectile" ".git" ".hg" ".fslckout" ".bzr" "_darcs" "rebar.config" "project.clj" "pom.xml" "build.sbt" "build.gradle" "Gemfile" "Makefile" ".svn")))
+   '(".projectile" ".git" ".hg" ".fslckout" ".bzr" "_darcs" "rebar.config" "project.clj" "pom.xml" "build.sbt" "build.gradle" "Gemfile" "Makefile" ".svn"))
  '(projectile-use-native-indexing nil)
- '(recentf-auto-cleanup (quote mode))
- '(same-window-buffer-names (quote ("*shell*")))
+ '(recentf-auto-cleanup 'mode)
+ '(same-window-buffer-names '("*shell*"))
  '(tool-bar-mode nil)
  '(typescript-indent-level 2)
  '(w3m-use-cookies t)
