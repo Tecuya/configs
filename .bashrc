@@ -9,6 +9,8 @@ export HISTSIZE=
 export HISTFILESIZE=
 # export PROMPT_COMMAND='history -a ; echo -en "\033]0;$(whoami)@$(hostname)\a"'
 
+PATH="$PATH:~/.local/bin"
+
 TERM=xterm
 
 if [ `uname` == "Linux" ]

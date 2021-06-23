@@ -44,9 +44,9 @@
 (use-package browse-kill-ring)
 (use-package auto-complete)
 ; (use-package bazel-mode)
-(use-package elpy
-  :init
-  (elpy-enable))
+;; (use-package elpy
+;;   :init
+;;   (elpy-enable))
 (use-package jedi
   :init
   (add-hook 'python-mode-hook 'jedi:setup))
@@ -548,6 +548,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(font-lock-builtin-face ((t (:foreground "SteelBlue" :weight bold))))
  '(font-lock-keyword-face ((t (:foreground "#FF8888"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#bcdcfc"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "#c3a8e6"))))
