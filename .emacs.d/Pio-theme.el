@@ -3,7 +3,7 @@
 
 (custom-theme-set-faces
  'Pio
- '(default ((t (:family "Inconsolata" :foundry "unknown" :width normal :height 128 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "white" :background "black" :stipple nil :inherit nil))))
+ '(default ((t (:family "Inconsolata" :foundry "unknown" :width normal :height 140 :weight bold :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "white" :background "black" :stipple nil :inherit nil))))
  '(cursor ((t (:background "red"))))
  '(fixed-pitch ((t (:family "courier"))))
  '(variable-pitch ((t (:family "helv"))))
@@ -26,7 +26,7 @@
  '(font-lock-regexp-grouping-backslash ((t (:inherit (bold)))))
  '(font-lock-regexp-grouping-construct ((t (:inherit (bold)))))
  '(font-lock-string-face ((t (:slant oblique :foreground "#55FF55"))))
- '(font-lock-type-face ((t (:family "Verdana" :height 0.9 :weight bold :foreground "PaleGreen"))))
+ '(font-lock-type-face ((t (:family "Inconsolata" :weight bold :foreground "PaleGreen"))))
  '(font-lock-variable-name-face ((t (:foreground "white"))))
  '(font-lock-warning-face ((t (:weight bold :foreground "chocolate"))))
  '(button ((t (:inherit (link)))))
