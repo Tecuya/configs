@@ -1,4 +1,4 @@
-PATH="$PATH:/usr/local/bin:$HOME/bin:$HOME/.rvm/bin"
+PATH="$PATH:/usr/local/bin:$HOME/.local/bin:$HOME/bin:$HOME/.rvm/bin"
 
 PS1='\u@\h:\w\$ '
 
