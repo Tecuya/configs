@@ -21,9 +21,7 @@ fi
 
 alias k91='kill -9 %1'
 
-export ORACLE_HOME=$HOME/opt/instantclient_12_1
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ORACLE_HOME
-export PYTHONIOENCODING='utf-8'
+# export PYTHONIOENCODING='utf-8'
 
 alias ec='emacsclient -c'
 
