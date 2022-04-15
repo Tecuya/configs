@@ -67,8 +67,8 @@
 )
 
 (use-package go-mode)
-
 (use-package terraform-mode)
+(use-package revert-buffer-all)
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
@@ -201,30 +201,6 @@
                              (if (boundp 'old-fullscreen) old-fullscreen nil)
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
-
-(defun revbufs ()
-   "Iterate through the list of buffers and revert them, e.g. after a
-    new branch has been checked out."
-    (interactive)
-    (when (yes-or-no-p "Are you sure - any changes in open buffers will be lost! ")
-      (let ((frm1 (selected-frame)))
-        (make-frame)
-        (let ((frm2 (next-frame frm1)))
-          (select-frame frm2)
-          (make-frame-invisible)
-          (dolist (x (buffer-list))
-            (let ((test-buffer (buffer-name x)))
-              (when (not (string-match "\*" test-buffer))
-                (when (not (file-exists-p (buffer-file-name x)))
-                  (select-frame frm1)
-                  (when (yes-or-no-p (concat "File no longer exists (" (buffer-name x) "). Close buffer? "))
-                    (kill-buffer (buffer-name x)))
-                  (select-frame frm2))
-                (when (file-exists-p (buffer-file-name x))
-                  (switch-to-buffer (buffer-name x))
-                  (revert-buffer t t t)))))
-          (select-frame frm1)
-          (delete-frame frm2)))))
 
 ; key to switch from frame to frame
 (global-set-key (kbd "C-o") 'other-frame)
@@ -618,7 +594,7 @@
  '(org-mobile-files '(org-agenda-files "~/Desktop/org/"))
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
-   '(terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package))
+   '(revert-buffer-all terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package))
  '(projectile-completion-system 'ido)
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
