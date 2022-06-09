@@ -7,7 +7,6 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 export HISTSIZE=
 export HISTFILESIZE=
-# export PROMPT_COMMAND='history -a ; echo -en "\033]0;$(whoami)@$(hostname)\a"'
 
 TERM=xterm
 
@@ -20,13 +19,10 @@ else
 fi
 
 alias k91='kill -9 %1'
-
-# export PYTHONIOENCODING='utf-8'
-
 alias ec='emacsclient -c'
-
-[ -e .bashrc.local ] && source .bashrc.local
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source $HOME/.bashrc.local
 

@@ -28,7 +28,6 @@
 (use-package markdown-mode)
 (use-package helm)
 (use-package use-package)
-(use-package stylus-mode)
 (use-package rainbow-delimiters)
 (use-package projectile)
 (use-package less-css-mode)
@@ -69,6 +68,9 @@
 (use-package go-mode)
 
 (use-package terraform-mode)
+(use-package keychain-environment
+  :init (keychain-refresh-environment)
+)
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
@@ -90,36 +92,7 @@
   (interactive))
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; setup nvm.el
-;; (nvm-use "v10.15.3")
-
-;; (defun setup-tide-mode ()
-;;   (interactive)
-;;   (tide-setup)
-;;   (flycheck-mode +1)
-;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-;;   (eldoc-mode +1)
-;;   (tide-hl-identifier-mode +1)
-;;   ;; company is an optional dependency. You have to
-;;   ;; install it separately via package-install
-;;   ;; `M-x package-install [ret] company`
-;;   (company-mode +1))
-
-;; ;; aligns annotation to the right hand side
-;; (setq company-tooltip-align-annotations t)
-
-;; ;; formats the buffer before saving
-;; (add-hook 'before-save-hook 'tide-format-before-save)
-
-;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
-;; (add-hook 'js2-mode-hook #'setup-tide-mode)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; http://stackoverflow.com/questions/8918910/weird-character-zsh-in-emacs-terminal
-; (setq system-uses-terminfo nil)
 
 ; http://superuser.com/questions/125569/how-to-fix-emacs-popup-dialogs-on-mac-os-x
 (defadvice yes-or-no-p (around prevent-dialog activate)
@@ -133,23 +106,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
-
-;;;;;;;
-;; "i cant believe i actually need these lets disable them and find out"
-;; (require 'company)
-;; (require 'flycheck)
-
-; company mode also comes from melpa
-;; (require 'company)
-;; (global-company-mode t)
-
-; (require 'projectile)
-; (require 'rainbow-delimiters)
-
-;; package-initialize doesnt do the job for this one
-; (require 'dired+)
-
 
 ;; Draw tabs with the same color as trailing whitespace
 (add-hook 'font-lock-mode-hook
@@ -185,9 +141,6 @@
                         ".*1G\.\.\..*5G" "... "
                         (replace-regexp-in-string ".*1G.*3G" "> " output))))))
 
-;; mingus mpd client
-(autoload 'mingus "mingus" nil t)
-
 ; dpaste auto paster
 (require 'dpaste)
 (global-set-key (kbd "C-c u") 'dpaste-region)
@@ -201,30 +154,6 @@
                              (if (boundp 'old-fullscreen) old-fullscreen nil)
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
-
-(defun revbufs ()
-   "Iterate through the list of buffers and revert them, e.g. after a
-    new branch has been checked out."
-    (interactive)
-    (when (yes-or-no-p "Are you sure - any changes in open buffers will be lost! ")
-      (let ((frm1 (selected-frame)))
-        (make-frame)
-        (let ((frm2 (next-frame frm1)))
-          (select-frame frm2)
-          (make-frame-invisible)
-          (dolist (x (buffer-list))
-            (let ((test-buffer (buffer-name x)))
-              (when (not (string-match "\*" test-buffer))
-                (when (not (file-exists-p (buffer-file-name x)))
-                  (select-frame frm1)
-                  (when (yes-or-no-p (concat "File no longer exists (" (buffer-name x) "). Close buffer? "))
-                    (kill-buffer (buffer-name x)))
-                  (select-frame frm2))
-                (when (file-exists-p (buffer-file-name x))
-                  (switch-to-buffer (buffer-name x))
-                  (revert-buffer t t t)))))
-          (select-frame frm1)
-          (delete-frame frm2)))))
 
 ; key to switch from frame to frame
 (global-set-key (kbd "C-o") 'other-frame)
@@ -297,9 +226,6 @@
 
 (define-key my-map (kbd "i") 'insert-buffer)
 
-; eclim stuff
-; (define-key my-map (kbd "t") 'company-complete-common)
-
 (define-key my-map (kbd "g") 'projectile-grep)
 (define-key my-map (kbd "f") 'projectile-find-file)
 
@@ -325,11 +251,6 @@
 ; better window cycling
 (global-set-key (kbd "C-c <down>") 'select-next-window)
 (global-set-key (kbd "C-c <up>")  'select-previous-window)
-
-;; add an extra confirmation dialog to the close procedure
-; (setq kill-emacs-query-functions
-;       (cons (lambda () (yes-or-no-p "Really end this emacs session? "))
-;     kill-emacs-query-functions))
 
 ; easy shortcut to rename-buffer
 (global-set-key (kbd "C-c r") 'rename-buffer)
@@ -392,28 +313,6 @@
 ;; paste at cursor position, not at mouse position
 (setq mouse-yank-at-point t)
 
-; by ashawley on #emacs on FreeNode
-(defun ash-find-file-to-window (file window)
-  "Open FILE in WINDOW."
-  (interactive
-   (list
-    (read-file-name "Find file: " default-directory nil
-                    (confirm-nonexistent-file-or-buffer))
-    (let* ((win-buffs (mapcar (lambda (p) (cons (buffer-name (car p))
-                                                (cdr p)))
-                              (mapcar (lambda (w)
-                                        (cons (window-buffer w) w))
-                                      (window-list))))
-           (buff (completing-read "Window: "
-                                  (mapcar 'car win-buffs)))
-           (win (assoc buff win-buffs)))
-      (unless (consp win)
-        (error "No window with buffer %s" buff))
-      (cdr win))))
-  (select-window wi<ndow)
-  (find-file file))
-(global-set-key (kbd "C-c w") 'ash-find-file-to-window)
-
 ;; coding style
 (c-set-offset 'case-label '+)
 (setq-default c-default-style "k&r")
@@ -452,9 +351,6 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
-;; highlighter!
-;  (global-set-key (kbd "C-c m") 'markerpen-mark-region)
-
 (defun unix-file ()
   "Change the current buffer to Latin 1 with Unix line-ends."
   (interactive)
@@ -469,9 +365,6 @@
           (explicit-shell-file-name "/bin/bash"))
       (cd (concat "/scp:" host ":"))
       (shell (concat "*" host "*")))))
-
-; bip causes server messages to come in containing unsolicited channel
-; user lists and other junk.  this hides it
 
 (setq temporary-file-directory "~/.emacs.d/tmp/")
 
@@ -522,19 +415,6 @@
 (global-set-key [f10] 'flycheck-error)
 (global-set-key [f11] 'flycheck-previous-error)
 
-(defun save-macro (name)
-  "save a macro. Take a name as argument
-     and save the last defined macro under
-     this name at the end of your .emacs"
-  (interactive "SName of the macro :")  ; ask for the name of the macro
-  (kmacro-name-last-macro name)         ; use this name for the macro
-  (find-file user-init-file)            ; open ~/.emacs or other user init file
-  (goto-char (point-max))               ; go to the end of the .emacs
-  (newline)                             ; insert a newline
-  (insert-kbd-macro name)               ; copy the macro
-  (newline)                             ; insert a newline
-  (switch-to-buffer nil))               ; return to the initial buffer
-
 ;;; register population .. poor man's snippet library
 (set-register ?i "import IPython; IPython.embed(simple_prompt=True)")
 (set-register ?p "import pdb; pdb.set_trace()")
@@ -548,6 +428,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(fixed-pitch ((t (:family "Monospace"))))
  '(font-lock-builtin-face ((t (:foreground "SteelBlue" :weight bold))))
  '(font-lock-keyword-face ((t (:foreground "#FF8888"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#bcdcfc"))))
@@ -618,7 +499,7 @@
  '(org-mobile-files '(org-agenda-files "~/Desktop/org/"))
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
-   '(terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters stylus-mode helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package))
+   '(keychain-environment elpy terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package))
  '(projectile-completion-system 'ido)
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
