@@ -3,7 +3,7 @@
 
 (custom-theme-set-faces
  'Pio
- '(default ((t (:family "Inconsolata" :foundry "unknown" :width normal :height 140 :weight bold :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "white" :background "black" :stipple nil :inherit nil))))
+ '(default ((t (:family "Inconsolata" :foundry "unknown" :width normal :height 95 :weight bold :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "white" :background "black" :stipple nil :inherit nil))))
  '(cursor ((t (:background "red"))))
  '(fixed-pitch ((t (:family "courier"))))
  '(variable-pitch ((t (:family "helv"))))
