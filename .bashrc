@@ -20,6 +20,7 @@ fi
 
 alias k91='kill -9 %1'
 alias ec='emacsclient -c'
+alias iv='instavid'
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
