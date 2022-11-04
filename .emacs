@@ -46,9 +46,9 @@
 ;; (use-package elpy
 ;;   :init
 ;;   (elpy-enable))
-(use-package jedi
-  :init
-  (add-hook 'python-mode-hook 'jedi:setup))
+;(use-package jedi
+  ;; :init
+  ;; (add-hook 'python-mode-hook 'jedi:setup))
 (use-package magit)
 (use-package thrift)
 (use-package exec-path-from-shell
