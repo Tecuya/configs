@@ -26,4 +26,4 @@ alias iv='instavid'
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source $HOME/.bashrc.local
-
+export PROMPT_COMMAND='history -a'
