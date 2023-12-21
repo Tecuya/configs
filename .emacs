@@ -71,6 +71,7 @@
 (use-package keychain-environment
   :init (keychain-refresh-environment)
 )
+(use-package chatgpt-shell)
 
 ;; loadpath things
 (add-to-list 'load-path "~/.emacs.d/loadpath")
@@ -499,7 +500,7 @@
  '(org-mobile-files '(org-agenda-files "~/Desktop/org/"))
  '(org-mobile-inbox-for-pull "~/Desktop/org/mobile/inbox.org")
  '(package-selected-packages
-   '(keychain-environment elpy terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package))
+   '(chatgpt-shell gptshell keychain-environment elpy terraform-mode go-mode bazel-mode git-gutter web-mode mingus pymacs jedi exec-path-from-shell thrift rjsx-mode nvm auto-complete browse-kill-ring coffee-mode color-theme dsvn f highlight jade-mode json-reformat key-chord kill-ring-search projectile rainbow-delimiters helm markdown-mode js2-mode company dockerfile-mode flycheck yaml-mode use-package))
  '(projectile-completion-system 'ido)
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
