@@ -504,7 +504,7 @@
  '(projectile-completion-system 'ido)
  '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
-   '(".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "**/.mypy_cache"))
+   '(".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "node_modules" "**/.mypy_cache" "venv*"))
  '(projectile-globally-ignored-files '(".coverage" "*.map" "TAGS" "*vendor.js" "./build/*"))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
