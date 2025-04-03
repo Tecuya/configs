@@ -372,6 +372,9 @@
 ; no annoying lockfiles that interfere with grunt watch
 (setq create-lockfiles nil)
 
+; projectile ignore
+(setq projectile-globally-ignored-files '("*venv*" ".pytest_cache" "*build/*"))
+
 ; http://stackoverflow.com/questions/10041284/how-to-not-save-changes-in-file-and-in-temp-buffer-too
 (when (boundp 'save-some-buffers-action-alist)
   (setq save-some-buffers-action-alist
