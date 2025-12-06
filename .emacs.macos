@@ -218,9 +218,9 @@
 ; my prefix
 (global-set-key (kbd "C-c m") 'my-map)
 
-(define-key my-map (kbd "b") (lambda () (interactive) (shell-command "mpc prev")))
-(define-key my-map (kbd "n") (lambda () (interactive) (shell-command "mpc next")))
-(define-key my-map (kbd "p") (lambda () (interactive) (shell-command "mpc toggle")))
+(define-key my-map (kbd "b") (lambda () (interactive) (shell-command "mpc -h 192.168.200.5 prev")))
+(define-key my-map (kbd "n") (lambda () (interactive) (shell-command "mpc -h 192.168.200.5 next")))
+(define-key my-map (kbd "p") (lambda () (interactive) (shell-command "mpc -h 192.168.200.5 toggle")))
 
 (define-key my-map (kbd "h") 'helm-mini)
 (define-key my-map (kbd "r") 'remove-newlines-in-region)
