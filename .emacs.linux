@@ -492,7 +492,6 @@
  '(git-commit-summary-max-length 190)
  '(global-flycheck-mode t)
  '(indicate-empty-lines t)
- '(insert-directory-program "/opt/homebrew/bin/gls")
  '(jde-jdk '("1.7"))
  '(jde-jdk-registry
    '(("1.8"
