@@ -218,9 +218,9 @@
 ; my prefix
 (global-set-key (kbd "C-c m") 'my-map)
 
-(define-key my-map (kbd "b") (lambda () (interactive) (shell-command "mpc -h 192.168.200.5 prev")))
-(define-key my-map (kbd "n") (lambda () (interactive) (shell-command "mpc -h 192.168.200.5 next")))
-(define-key my-map (kbd "p") (lambda () (interactive) (shell-command "mpc -h 192.168.200.5 toggle")))
+(define-key my-map (kbd "b") (lambda () (interactive) (shell-command "mpc -h lockwood.local prev")))
+(define-key my-map (kbd "n") (lambda () (interactive) (shell-command "mpc -h lockwood.local next")))
+(define-key my-map (kbd "p") (lambda () (interactive) (shell-command "mpc -h lockwood.local toggle")))
 
 (define-key my-map (kbd "h") 'helm-mini)
 (define-key my-map (kbd "r") 'remove-newlines-in-region)
@@ -531,7 +531,8 @@
    '(".idea" ".ensime_cache" ".mypy_cache" ".eunit" ".git" ".hg"
      ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn"
      ".stack-work" "node_modules" "**/.mypy_cache" "venv*"))
- '(projectile-globally-ignored-files '(".coverage" "*.map" "TAGS" "*vendor.js" "./build/*"))
+ '(projectile-globally-ignored-files
+   '(".coverage" "*.map" "TAGS" "*vendor.js" "./build/*" ".venv2"))
  '(projectile-mode t nil (projectile))
  '(projectile-project-root-files
    '(".projectile" ".git" ".hg" ".fslckout" ".bzr" "_darcs"
